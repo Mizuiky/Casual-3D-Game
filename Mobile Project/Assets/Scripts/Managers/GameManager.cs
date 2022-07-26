@@ -20,6 +20,11 @@ public class GameManager : Singleton<GameManager>
 
     public void Init()
     {
+        _uiController.SetScreenVisibility(UIController.ScreenType.START, true);
+    }
+
+    public void StartGame()
+    {
         _playerController.CanRun = true;
     }
 
@@ -27,5 +32,10 @@ public class GameManager : Singleton<GameManager>
     {
         _playerController.CanRun = false;
         _uiController.SetScreenVisibility(UIController.ScreenType.END, true);
+    }
+
+    public void CallVictory()
+    {
+        _uiController.SetScreenVisibility(UIController.ScreenType.VICTORY, true);
     }
 }

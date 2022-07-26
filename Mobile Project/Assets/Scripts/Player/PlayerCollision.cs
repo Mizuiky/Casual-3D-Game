@@ -8,8 +8,15 @@ public class PlayerCollision : MonoBehaviour
     {
         if(collision.transform.CompareTag("Enemy"))
         {
-            Debug.Log("Enemy");
             GameManager.Instance.EndGame();
-        }          
+        }  
+    }
+
+    public void OnTriggerEnter(Collider collision)
+    {
+        if (collision.transform.CompareTag("EndLine"))
+        {
+            GameManager.Instance.CallVictory();
+        }
     }
 }

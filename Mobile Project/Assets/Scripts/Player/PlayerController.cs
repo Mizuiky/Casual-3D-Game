@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    #region Serializable Fields
+
     [Header("Player fields")]
 
     [SerializeField]
@@ -14,12 +16,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Transform _target;
 
+    #endregion
+
+    #region Private Fields
+
     [SerializeField]
     private float _lerpDelay;
 
     private bool _canRun;
 
     private Vector3 _position;
+
+    #endregion
 
     public bool CanRun
     {
