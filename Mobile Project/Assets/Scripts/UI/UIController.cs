@@ -21,6 +21,11 @@ public class UIController : MonoBehaviour
             case ScreenType.END:
                 _screens[2].SetActive(enable);
                 break;
+            case ScreenType.VICTORY:
+                _screens[3].SetActive(enable);
+                break;
+            default:
+                return;
         }
     }
 
@@ -29,6 +34,7 @@ public class UIController : MonoBehaviour
         NONE,
         START,
         END,
-        PAUSE
+        PAUSE,
+        VICTORY
     }
 }
