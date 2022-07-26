@@ -23,6 +23,7 @@ public class TouchController : MonoBehaviour
 
     private void Move()
     {
+        //this moves the controller to the 2D distance(_speed) between mouse position and the previous position in the x axis
         transform.position += Vector3.right * _speed * Time.deltaTime * _speedModifier;
     }
 }

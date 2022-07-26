@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        Init();
+        Init();   
     }
 
     private void Update()
@@ -42,17 +42,20 @@ public class PlayerController : MonoBehaviour
 
     public void Init()
     {
-        _canRun = true;
+        _canRun = false;
     }
 
     public void Move()
     {
+        //Update y and z positions to avoid problems when touching the screen
         _position = _target.position;
         _position.y = transform.position.y;
         _position.z = transform.position.z;
 
+        //Player moves foward when is running
         transform.position += Vector3.forward * Time.deltaTime * _speed;
 
+        //this make the player move to the right and left smooth with the reference of the PlayerPosition
         transform.position = Vector3.Lerp(transform.position, _position, Time.deltaTime * _lerpDelay);
     }
 }
