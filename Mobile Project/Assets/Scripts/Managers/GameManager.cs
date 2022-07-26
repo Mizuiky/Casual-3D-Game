@@ -36,6 +36,7 @@ public class GameManager : Singleton<GameManager>
 
     public void CallVictory()
     {
+        _playerController.CanRun = false;
         _uiController.SetScreenVisibility(UIController.ScreenType.VICTORY, true);
     }
 }
