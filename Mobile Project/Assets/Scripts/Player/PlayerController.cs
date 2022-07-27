@@ -16,18 +16,36 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Transform _target;
 
+    [SerializeField]
+    private float _lerpDelay;
+
+    [Header("Model Fields")]
+
+    [SerializeField]
+    private MeshRenderer _mesh;
+
+    [SerializeField]
+    private Color _invencibleColor;
+
+    [SerializeField]
+    private Color _playerColor;
+
     #endregion
 
     #region Private Fields
-
-    [SerializeField]
-    private float _lerpDelay;
 
     private bool _canRun;
 
     private Vector3 _position;
 
     private float _currentSpeed;
+
+    private bool _invencible;
+
+    public bool Invencible
+    {
+        get => _invencible;
+    }
 
     #endregion
 
@@ -53,7 +71,10 @@ public class PlayerController : MonoBehaviour
     public void Init()
     {
         _canRun = false;
+        _invencible = false;
         _currentSpeed = _fowardSpeed;
+
+        _playerColor = _mesh.material.color = _playerColor;
     }
 
     public void Move()
@@ -76,6 +97,17 @@ public class PlayerController : MonoBehaviour
     public void ChangeSpeed(float newSpeed)
     {
         _currentSpeed = newSpeed;
+    }
+
+    //Invencible PowerUp
+    public void MakeInvencible(bool isInvencible)
+    {
+        if (isInvencible)
+            _mesh.material.color = _invencibleColor;
+        else
+            _mesh.material.color = _playerColor;
+
+        _invencible = isInvencible;
     }
 
     #endregion

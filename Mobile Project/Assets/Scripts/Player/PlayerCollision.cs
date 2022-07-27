@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class PlayerCollision : MonoBehaviour
 {
+    [SerializeField]
+    private PlayerController _player;
+
     public void OnCollisionEnter(Collision collision)
     {
         if(collision.transform.CompareTag("Enemy"))
         {
-            GameManager.Instance.EndGame();
+            if(!_player.Invencible)
+                GameManager.Instance.EndGame();
         }  
     }
 
