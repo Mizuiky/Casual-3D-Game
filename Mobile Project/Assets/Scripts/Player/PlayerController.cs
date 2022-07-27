@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     [Header("Player fields")]
 
     [SerializeField]
-    private float _speed;
+    private float _fowardSpeed;
 
     [Header("Lerp fields")]
 
@@ -26,6 +26,8 @@ public class PlayerController : MonoBehaviour
     private bool _canRun;
 
     private Vector3 _position;
+
+    private float _currentSpeed;
 
     #endregion
 
@@ -51,6 +53,7 @@ public class PlayerController : MonoBehaviour
     public void Init()
     {
         _canRun = false;
+        _currentSpeed = _fowardSpeed;
     }
 
     public void Move()
@@ -61,9 +64,19 @@ public class PlayerController : MonoBehaviour
         _position.z = transform.position.z;
 
         //Player moves foward when is running
-        transform.position += Vector3.forward * Time.deltaTime * _speed;
+        transform.position += Vector3.forward * Time.deltaTime * _currentSpeed;
 
         //this make the player move to the right and left smooth with the reference of the PlayerPosition
         transform.position = Vector3.Lerp(transform.position, _position, Time.deltaTime * _lerpDelay);
     }
+
+    #region PowerUp
+
+    //Speed PowerUp
+    public void ChangeSpeed(float newSpeed)
+    {
+        _currentSpeed = newSpeed;
+    }
+
+    #endregion
 }

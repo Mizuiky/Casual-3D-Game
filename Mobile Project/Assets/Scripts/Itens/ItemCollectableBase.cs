@@ -4,17 +4,26 @@ using UnityEngine;
 
 public class ItemCollectableBase : MonoBehaviour
 {
+    [Header("Item Fields")]
+
     [SerializeField]
     private Collider _itemCollider;
+
+    [SerializeField]
+    private GameObject _graphic;
+
+    [SerializeField]
+    protected string _tagToCompare;
+
 
     private void Start()
     {
         Init();    
     }
 
-    public void OnTriggerEnter(Collider collider)
+    protected virtual void OnTriggerEnter(Collider collider)
     {
-        if(collider.CompareTag("Player"))
+        if(collider.CompareTag(_tagToCompare))
         {
             Collect();
         }
@@ -23,7 +32,7 @@ public class ItemCollectableBase : MonoBehaviour
     public virtual void Collect()
     {
         _itemCollider.enabled = false;
-        gameObject.SetActive(false);
+        _graphic.SetActive(false);
 
         OnCollect();
     }
@@ -33,5 +42,6 @@ public class ItemCollectableBase : MonoBehaviour
     private void Init()
     {
         _itemCollider.enabled = true;
+        _graphic.SetActive(true);
     }
 }

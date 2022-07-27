@@ -23,6 +23,7 @@ public class GameManager : Singleton<GameManager>
         _uiController.SetScreenVisibility(UIController.ScreenType.START, true);
     }
 
+    #region Game Flow
     public void StartGame()
     {
         _playerController.CanRun = true;
@@ -39,4 +40,6 @@ public class GameManager : Singleton<GameManager>
         _playerController.CanRun = false;
         _uiController.SetScreenVisibility(UIController.ScreenType.VICTORY, true);
     }
+
+    #endregion
 }
