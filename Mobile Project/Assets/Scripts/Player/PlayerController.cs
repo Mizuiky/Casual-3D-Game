@@ -6,12 +6,12 @@ public class PlayerController : MonoBehaviour
 {
     #region Serializable Fields
 
-    [Header("Player fields")]
+    [Header("Player Fields")]
 
     [SerializeField]
     private float _fowardSpeed;
 
-    [Header("Lerp fields")]
+    [Header("Lerp")]
 
     [SerializeField]
     private Transform _target;
@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float _lerpDelay;
 
-    [Header("PowerUp Fields")]
+    [Header("PowerUp")]
 
     [SerializeField]
     private Color _playerColor;
@@ -32,6 +32,11 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     private SphereCollider _coinCollider;
+
+    [Header("Animation")]
+
+    [SerializeField]
+    private AnimationController _animationController;
 
     #endregion
 

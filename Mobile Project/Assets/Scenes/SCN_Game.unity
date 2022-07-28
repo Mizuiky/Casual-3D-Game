@@ -3042,6 +3042,7 @@ MonoBehaviour:
   _mesh: {fileID: 1656094143}
   _animationDuration: 1
   _coinCollider: {fileID: 149466219}
+  _animationController: {fileID: 1650726998}
 --- !u!54 &1326400839
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3560,6 +3561,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1610509435}
   m_CullTransparentMesh: 1
+--- !u!1 &1650726996 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5531986718136724959, guid: 89e20167823a30d459856414377997d1, type: 3}
+  m_PrefabInstance: {fileID: 1294515149}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1650726997 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7193805671317595757, guid: 89e20167823a30d459856414377997d1, type: 3}
+  m_PrefabInstance: {fileID: 1294515149}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1650726998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1650726996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dbb4f3c99a476549b6b31b79be9598c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 1650726997}
+  _animationSetup:
+  - type: 0
+    trigger: idle
+  - type: 1
+    trigger: CanRun
+  - type: 2
+    trigger: Dead
 --- !u!1 &1656094142
 GameObject:
   m_ObjectHideFlags: 0
