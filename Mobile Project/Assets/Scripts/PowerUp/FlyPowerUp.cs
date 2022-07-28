@@ -11,7 +11,7 @@ public class FlyPowerUp : PowerUpBase
 
     public override void StartPowerUp()
     {
-        _player.MakeFly(_powerUpColor, _flyHeight, _duration);
+        _player.MakeFly(_flyHeight, _duration);
         base.StartPowerUp();
     }
 

@@ -12,7 +12,7 @@ public class SpeedPowerUp : PowerUpBase
     public override void StartPowerUp()
     {
         base.StartPowerUp();
-        _player.ChangeSpeed(_speedModifier, _powerUpColor);
+        _player.ChangeSpeed(_speedModifier);
     }
 
     public override void EndPowerUp()

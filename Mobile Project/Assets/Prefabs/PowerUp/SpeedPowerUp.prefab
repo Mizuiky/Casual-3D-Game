@@ -132,9 +132,9 @@ MonoBehaviour:
   _itemCollider: {fileID: 8466505230481061429}
   _graphic: {fileID: 2191939949422082646}
   _tagToCompare: Player
-  _duration: 2
+  _duration: 3
   _powerUpColor: {r: 0.27450982, g: 0.78431374, b: 0.99215686, a: 0}
-  _speedModifier: 25
+  _speedModifier: 20
 --- !u!65 &8466505230481061429
 BoxCollider:
   m_ObjectHideFlags: 0

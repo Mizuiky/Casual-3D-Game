@@ -9,7 +9,7 @@ public class InvenciblePowerUp : PowerUpBase
 
     public override void StartPowerUp()
     {
-        _player.MakeInvencible(true, _powerUpColor);
+        _player.MakeInvencible(true);
 
         _invencible = _player.Invencible;
 
@@ -18,7 +18,7 @@ public class InvenciblePowerUp : PowerUpBase
 
     public override void EndPowerUp()
     {
-        _player.Invencible = false;
+        _player.MakeInvencible(false);
 
         _invencible = _player.Invencible;
         base.EndPowerUp();

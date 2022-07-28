@@ -12,32 +12,22 @@ public class PowerUpBase : ItemCollectableBase
     [SerializeField]
     protected Color _powerUpColor;
 
-    protected PlayerController _player;
-
-    protected override void OnTriggerEnter(Collider collider)
-    {    
-        if (collider.CompareTag(_tagToCompare))
-        {
-            _player = collider.GetComponent<PlayerController>();
-
-            if (_player != null)
-                Collect();
-        }
-    }
-
     public override void Collect()
     {
         base.Collect();
         StartPowerUp();     
     }
 
-    public override void OnCollect()
+    public override void HideItem()
     {
-        
+        base.HideItem();
     }
+
+    public override void OnCollect() { }
 
     public virtual void StartPowerUp()
     {
+        _player.ChangeColor(_powerUpColor);
         Invoke("EndPowerUp", _duration);
     }
 
