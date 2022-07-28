@@ -30,6 +30,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float _animationDuration;
 
+    [SerializeField]
+    private SphereCollider _coinCollider;
+
     #endregion
 
     #region Private Fields
@@ -47,7 +50,6 @@ public class PlayerController : MonoBehaviour
     public bool Invencible
     {
         get => _invencible;
-        set => _invencible = value;
     }
 
 
@@ -78,6 +80,8 @@ public class PlayerController : MonoBehaviour
         _invencible = false;
         _currentSpeed = _fowardSpeed;
 
+        ChangeCoinColliderSize(1.5f);
+
         _playerColor = _mesh.material.color = _playerColor;
     }
 
@@ -98,23 +102,19 @@ public class PlayerController : MonoBehaviour
     #region PowerUp
 
     //Speed PowerUp
-    public void ChangeSpeed(float newSpeed, Color powerUpColor)
+    public void ChangeSpeed(float newSpeed)
     {
-        ChangeColor(powerUpColor);
         _currentSpeed = newSpeed;
     }
 
     //Invencible PowerUp
-    public void MakeInvencible(bool isInvencible, Color powerUpColor)
+    public void MakeInvencible(bool isInvencible)
     {
-        ChangeColor(powerUpColor);
         _invencible = isInvencible;
     }
 
-    public void MakeFly(Color powerUpColor, float flyHeight, float duration)
+    public void MakeFly(float flyHeight, float duration)
     {
-        ChangeColor(powerUpColor);
-
         _startPosition = transform;
      
         transform.DOMoveY(_startPosition.position.y + flyHeight, _animationDuration);
@@ -123,7 +123,12 @@ public class PlayerController : MonoBehaviour
         //transform.DOMoveY(_startPosition.position.y + flyHeight, _animationDuration).OnComplete(() => ChangeHeight(flyHeight)); 
     }
 
-    private void ChangeColor(Color color)
+    public void ChangeCoinColliderSize(float amount)
+    {
+        _coinCollider.radius = amount;
+    }
+
+    public void ChangeColor(Color color)
     {
          _mesh.material.color = color;
     }

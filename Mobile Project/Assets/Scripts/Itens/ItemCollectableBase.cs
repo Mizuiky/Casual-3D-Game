@@ -15,6 +15,7 @@ public class ItemCollectableBase : MonoBehaviour
     [SerializeField]
     protected string _tagToCompare;
 
+    protected PlayerController _player;
 
     private void Start()
     {
@@ -23,18 +24,36 @@ public class ItemCollectableBase : MonoBehaviour
 
     protected virtual void OnTriggerEnter(Collider collider)
     {
-        if(collider.CompareTag(_tagToCompare))
+        if (collider.CompareTag(_tagToCompare))
         {
-            Collect();
+            _player = collider.GetComponent<PlayerController>();
+
+            if (_player == null)
+            {
+                _player = collider.GetComponentInParent<PlayerController>();
+
+                if(_player != null)
+                    Collect();
+            }
+            else
+            {
+                Collect();
+            }            
         }
     }
 
     public virtual void Collect()
     {
-        _itemCollider.enabled = false;
-        _graphic.SetActive(false);
-
+        HideItem();
         OnCollect();
+    }
+
+    public virtual void HideItem()
+    {
+        _itemCollider.enabled = false;
+
+        if(_graphic != null)
+            _graphic.SetActive(false);
     }
 
     public virtual void OnCollect() { }
