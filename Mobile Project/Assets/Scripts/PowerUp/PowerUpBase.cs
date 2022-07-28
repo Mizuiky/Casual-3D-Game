@@ -7,7 +7,10 @@ public class PowerUpBase : ItemCollectableBase
     [Header("PowerUp Fields")]
 
     [SerializeField]
-    private float _duration;
+    protected float _duration;
+
+    [SerializeField]
+    protected Color _powerUpColor;
 
     protected PlayerController _player;
 
@@ -38,5 +41,8 @@ public class PowerUpBase : ItemCollectableBase
         Invoke("EndPowerUp", _duration);
     }
 
-    public virtual void EndPowerUp() { }
+    public virtual void EndPowerUp() 
+    {
+        _player.ResetColor();
+    }
 }

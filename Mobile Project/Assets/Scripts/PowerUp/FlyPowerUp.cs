@@ -2,23 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpeedPowerUp : PowerUpBase
+public class FlyPowerUp : PowerUpBase
 {
-    [Header("Speed PowerUp Fields")]
+    [Header("Fly PowerUp Fields")]
 
     [SerializeField]
-    private float _speedModifier;
+    private float _flyHeight;
 
     public override void StartPowerUp()
     {
+        _player.MakeFly(_powerUpColor, _flyHeight, _duration);
         base.StartPowerUp();
-        _player.ChangeSpeed(_speedModifier, _powerUpColor);
     }
 
     public override void EndPowerUp()
     {
         base.EndPowerUp();
-        _player.ResetSpeed();
-
     }
 }

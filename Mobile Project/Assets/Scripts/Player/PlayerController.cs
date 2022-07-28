@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using DG.Tweening;
 public class PlayerController : MonoBehaviour
 {
     #region Serializable Fields
@@ -19,33 +19,37 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float _lerpDelay;
 
-    [Header("Model Fields")]
+    [Header("PowerUp Fields")]
+
+    [SerializeField]
+    private Color _playerColor;
 
     [SerializeField]
     private MeshRenderer _mesh;
 
     [SerializeField]
-    private Color _invencibleColor;
-
-    [SerializeField]
-    private Color _playerColor;
+    private float _animationDuration;
 
     #endregion
 
     #region Private Fields
 
     private bool _canRun;
+    private bool _invencible;
+
 
     private Vector3 _position;
 
     private float _currentSpeed;
 
-    private bool _invencible;
+    private Transform _startPosition;
 
     public bool Invencible
     {
         get => _invencible;
+        set => _invencible = value;
     }
+
 
     #endregion
 
@@ -94,20 +98,59 @@ public class PlayerController : MonoBehaviour
     #region PowerUp
 
     //Speed PowerUp
-    public void ChangeSpeed(float newSpeed)
+    public void ChangeSpeed(float newSpeed, Color powerUpColor)
     {
+        ChangeColor(powerUpColor);
         _currentSpeed = newSpeed;
     }
 
     //Invencible PowerUp
-    public void MakeInvencible(bool isInvencible)
+    public void MakeInvencible(bool isInvencible, Color powerUpColor)
     {
-        if (isInvencible)
-            _mesh.material.color = _invencibleColor;
-        else
-            _mesh.material.color = _playerColor;
-
+        ChangeColor(powerUpColor);
         _invencible = isInvencible;
+    }
+
+    public void MakeFly(Color powerUpColor, float flyHeight, float duration)
+    {
+        ChangeColor(powerUpColor);
+
+        _startPosition = transform;
+     
+        transform.DOMoveY(_startPosition.position.y + flyHeight, _animationDuration);
+        Invoke("ResetHeight", duration);
+
+        //transform.DOMoveY(_startPosition.position.y + flyHeight, _animationDuration).OnComplete(() => ChangeHeight(flyHeight)); 
+    }
+
+    private void ChangeColor(Color color)
+    {
+         _mesh.material.color = color;
+    }
+
+    public void ResetColor()
+    {
+        _mesh.material.color = _playerColor;
+    }
+
+    //public void ChangeHeight(float newHeight)
+    //{
+    //    Debug.Log("CHANGE HEIGHT: " + newHeight);
+    //    var newPosition = _startPosition.position;
+    //    newPosition.y = newHeight;
+
+    //    transform.position = newPosition;
+    //}
+
+    public void ResetHeight()
+    {
+        Debug.Log(" RESET HEGHT");
+        //transform.DOMoveY(_startPosition.position.y, _animationDuration);
+    }
+
+    public void ResetSpeed()
+    {
+        _currentSpeed = _fowardSpeed;
     }
 
     #endregion

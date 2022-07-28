@@ -9,14 +9,18 @@ public class InvenciblePowerUp : PowerUpBase
 
     public override void StartPowerUp()
     {
-        _player.MakeInvencible(true);
-        base.StartPowerUp();
+        _player.MakeInvencible(true, _powerUpColor);
+
         _invencible = _player.Invencible;
+
+        base.StartPowerUp();
     }
 
     public override void EndPowerUp()
     {
-        _player.MakeInvencible(false);
+        _player.Invencible = false;
+
         _invencible = _player.Invencible;
+        base.EndPowerUp();
     }
 }
