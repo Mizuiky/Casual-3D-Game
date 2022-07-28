@@ -146,5 +146,5 @@ MonoBehaviour:
   _graphic: {fileID: 2628975597413064438}
   _tagToCompare: CoinCollector
   _lerpDuration: 0.5
-  _speedModifier: 5
-  _minDistance: 1.5
+  _speedModifier: 3
+  _minDistance: 2

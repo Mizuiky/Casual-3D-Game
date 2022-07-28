@@ -123,21 +123,6 @@ public class PlayerController : MonoBehaviour
         //transform.DOMoveY(_startPosition.position.y + flyHeight, _animationDuration).OnComplete(() => ChangeHeight(flyHeight)); 
     }
 
-    public void ChangeCoinColliderSize(float amount)
-    {
-        _coinCollider.radius = amount;
-    }
-
-    public void ChangeColor(Color color)
-    {
-         _mesh.material.color = color;
-    }
-
-    public void ResetColor()
-    {
-        _mesh.material.color = _playerColor;
-    }
-
     //public void ChangeHeight(float newHeight)
     //{
     //    Debug.Log("CHANGE HEIGHT: " + newHeight);
@@ -151,6 +136,21 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log(" RESET HEGHT");
         //transform.DOMoveY(_startPosition.position.y, _animationDuration);
+    }
+
+    public void ChangeCoinColliderSize(float amount)
+    {
+        _coinCollider.radius = amount;
+    }
+
+    public void ChangeColor(Color color)
+    {
+         _mesh.material.color = color;
+    }
+
+    public void ResetColor()
+    {
+        _mesh.material.color = _playerColor;
     }
 
     public void ResetSpeed()
