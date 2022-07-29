@@ -6,12 +6,12 @@ public class PlayerController : MonoBehaviour
 {
     #region Serializable Fields
 
-    [Header("Player Fields")]
+    [Header("Player Setup")]
 
     [SerializeField]
     private float _fowardSpeed;
 
-    [Header("Lerp")]
+    [Header("Lerp Setup")]
 
     [SerializeField]
     private Transform _target;
@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float _lerpDelay;
 
-    [Header("PowerUp")]
+    [Header("PowerUp Setup")]
 
     [SerializeField]
     private Color _playerColor;
@@ -28,15 +28,17 @@ public class PlayerController : MonoBehaviour
     private MeshRenderer _mesh;
 
     [SerializeField]
-    private float _animationDuration;
+    private float _flyAnimationDuration;
 
     [SerializeField]
     private SphereCollider _coinCollider;
 
-    [Header("Animation")]
+    [Header("Animation Setup")]
+
+    public AnimationController animationController;
 
     [SerializeField]
-    private AnimationController _animationController;
+    private float _speedPowerUpAnimation;
 
     #endregion
 
@@ -56,7 +58,6 @@ public class PlayerController : MonoBehaviour
     {
         get => _invencible;
     }
-
 
     #endregion
 
@@ -110,6 +111,7 @@ public class PlayerController : MonoBehaviour
     public void ChangeSpeed(float newSpeed)
     {
         _currentSpeed = newSpeed;
+        animationController.SetAnimationSpeed(newSpeed / _speedPowerUpAnimation);
     }
 
     //Invencible PowerUp
@@ -122,7 +124,7 @@ public class PlayerController : MonoBehaviour
     {
         _startPosition = transform;
      
-        transform.DOMoveY(_startPosition.position.y + flyHeight, _animationDuration);
+        transform.DOMoveY(_startPosition.position.y + flyHeight, _flyAnimationDuration);
         Invoke("ResetHeight", duration);
 
         //transform.DOMoveY(_startPosition.position.y + flyHeight, _animationDuration).OnComplete(() => ChangeHeight(flyHeight)); 
@@ -161,6 +163,7 @@ public class PlayerController : MonoBehaviour
     public void ResetSpeed()
     {
         _currentSpeed = _fowardSpeed;
+        animationController.SetAnimationSpeed(1f);
     }
 
     #endregion

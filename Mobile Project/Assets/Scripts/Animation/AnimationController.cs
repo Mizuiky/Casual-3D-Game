@@ -13,16 +13,28 @@ public class AnimationController : MonoBehaviour
     [SerializeField]
     private List<AnimationSetup> _animationSetup;
 
-    private AnimationSetup _currenAnimation;
-
     public void Play(AnimationType type)
     {
-        _currenAnimation = _animationSetup.Where(x => x.type == type).FirstOrDefault();
+        var anim = FindAnimationByType(type);
 
-        if (_currenAnimation != null)
-            _animator.SetTrigger(_currenAnimation.trigger);          
+        if (anim != null)
+        {
+            _animator.SetTrigger(anim.trigger);
+            SetAnimationSpeed(anim.speed);
+        }
+    }
+
+    private AnimationSetup FindAnimationByType(AnimationType type)
+    {
+        return _animationSetup.Where(x => x.type == type).FirstOrDefault();     
+    }
+
+    public void SetAnimationSpeed(float speed)
+    {
+        _animator.speed = speed;
     }
 }
+
 
 public enum AnimationType
 {
@@ -36,4 +48,5 @@ public class AnimationSetup
 {
     public AnimationType type;
     public string trigger;
+    public float speed;
 }

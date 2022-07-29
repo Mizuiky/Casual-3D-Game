@@ -24,21 +24,27 @@ public class GameManager : Singleton<GameManager>
     }
 
     #region Game Flow
+
     public void StartGame()
     {
         _playerController.CanRun = true;
+        _playerController.animationController.Play(AnimationType.RUN);
     }
 
     public void EndGame()
     {
         _playerController.CanRun = false;
-        _uiController.SetScreenVisibility(UIController.ScreenType.END, true);
+        _playerController.animationController.Play(AnimationType.DEAD);
+
+        _uiController.SetScreenVisibility(UIController.ScreenType.END, true);   
     }
 
     public void CallVictory()
     {
         _playerController.CanRun = false;
-        _uiController.SetScreenVisibility(UIController.ScreenType.VICTORY, true);
+        _playerController.animationController.Play(AnimationType.IDLE);
+
+        _uiController.SetScreenVisibility(UIController.ScreenType.VICTORY, true);       
     }
 
     #endregion
