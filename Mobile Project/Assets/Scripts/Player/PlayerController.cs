@@ -11,6 +11,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float _fowardSpeed;
 
+    [SerializeField]
+    private Rigidbody _rb;
+
     [Header("Lerp Setup")]
 
     [SerializeField]
@@ -85,6 +88,7 @@ public class PlayerController : MonoBehaviour
         _canRun = false;
         _invencible = false;
         _currentSpeed = _fowardSpeed;
+        _rb.useGravity = true;
 
         ChangeCoinColliderSize(1.5f);
 
@@ -123,26 +127,21 @@ public class PlayerController : MonoBehaviour
     public void MakeFly(float flyHeight, float duration)
     {
         _startPosition = transform;
-     
+
+        _rb.useGravity = false;
         transform.DOMoveY(_startPosition.position.y + flyHeight, _flyAnimationDuration);
         Invoke("ResetHeight", duration);
-
-        //transform.DOMoveY(_startPosition.position.y + flyHeight, _animationDuration).OnComplete(() => ChangeHeight(flyHeight)); 
     }
 
-    //public void ChangeHeight(float newHeight)
-    //{
-    //    Debug.Log("CHANGE HEIGHT: " + newHeight);
-    //    var newPosition = _startPosition.position;
-    //    newPosition.y = newHeight;
-
-    //    transform.position = newPosition;
-    //}
+    public void MoveBack()
+    {
+        transform.DOMoveZ(-1f, 2f).SetRelative();
+    }
 
     public void ResetHeight()
     {
-        Debug.Log(" RESET HEGHT");
-        //transform.DOMoveY(_startPosition.position.y, _animationDuration);
+        transform.DOMoveY(_startPosition.position.y, _flyAnimationDuration);
+        _rb.useGravity = true;
     }
 
     public void ChangeCoinColliderSize(float amount)

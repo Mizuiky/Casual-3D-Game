@@ -34,6 +34,8 @@ public class GameManager : Singleton<GameManager>
     public void EndGame()
     {
         _playerController.CanRun = false;
+        _playerController.MoveBack();
+
         _playerController.animationController.Play(AnimationType.DEAD);
 
         _uiController.SetScreenVisibility(UIController.ScreenType.END, true);   
