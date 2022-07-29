@@ -6,12 +6,14 @@ public class CoinPowerUp : PowerUpBase
 {
     [Header("Coin PowerUp Fields")]
 
+    [Header("Coin Collider")]
     [SerializeField]
-    private int _amount;
+    private int _amountToIncrease;
 
     public override void StartPowerUp()
     {
-        _player.ChangeCoinColliderSize(_amount);
+        Debug.Log("coin power up");
+        _player.ChangeCoinColliderSize(_amountToIncrease);
         base.StartPowerUp();     
     }
 

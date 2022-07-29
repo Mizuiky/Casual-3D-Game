@@ -145,6 +145,5 @@ MonoBehaviour:
   _itemCollider: {fileID: 8641412480597261878}
   _graphic: {fileID: 2628975597413064438}
   _tagToCompare: CoinCollector
-  _lerpDuration: 0.5
-  _speedModifier: 3
+  _lerpDuration: 4
   _minDistance: 2
