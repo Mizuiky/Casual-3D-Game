@@ -27,24 +27,19 @@ public class GameManager : Singleton<GameManager>
 
     public void StartGame()
     {
-        _playerController.CanRun = true;
-        _playerController.animationController.Play(AnimationType.RUN);
+        _playerController.StartToRun();
     }
 
     public void EndGame()
     {
-        _playerController.CanRun = false;
-        _playerController.MoveBack();
-
-        _playerController.animationController.Play(AnimationType.DEAD);
+        _playerController.StopToRun();
 
         _uiController.SetScreenVisibility(UIController.ScreenType.END, true);   
     }
 
     public void CallVictory()
     {
-        _playerController.CanRun = false;
-        _playerController.animationController.Play(AnimationType.IDLE);
+        _playerController.PlayerVictory();
 
         _uiController.SetScreenVisibility(UIController.ScreenType.VICTORY, true);       
     }

@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Animation Setup")]
 
-    public AnimationController animationController;
+    public AnimationController _animationController;
 
     [SerializeField]
     private float _speedPowerUpAnimation;
@@ -63,12 +63,6 @@ public class PlayerController : MonoBehaviour
     }
 
     #endregion
-
-    public bool CanRun
-    {
-        get => _canRun;
-        set => _canRun = value;
-    }
 
     private void Start()
     {
@@ -109,13 +103,33 @@ public class PlayerController : MonoBehaviour
         transform.position = Vector3.Lerp(transform.position, _position, Time.deltaTime * _lerpDelay);
     }
 
+    public void StartToRun()
+    {
+        _canRun = true;
+        _animationController.Play(AnimationType.RUN);
+    }
+
+    public void StopToRun()
+    {
+        _canRun = false;
+        MoveBack();
+
+        _animationController.Play(AnimationType.DEAD);
+    }
+
+    public void PlayerVictory()
+    {
+        _canRun = false;
+        _animationController.Play(AnimationType.IDLE);
+    }
+
     #region PowerUp
 
     //Speed PowerUp
     public void ChangeSpeed(float newSpeed)
     {
         _currentSpeed = newSpeed;
-        animationController.SetAnimationSpeed(newSpeed / _speedPowerUpAnimation);
+        _animationController.SetAnimationSpeed(newSpeed / _speedPowerUpAnimation);
     }
 
     //Invencible PowerUp
@@ -135,6 +149,7 @@ public class PlayerController : MonoBehaviour
 
     public void MoveBack()
     {
+        //the same as trasnform.position.z - 1
         transform.DOMoveZ(-1f, 2f).SetRelative();
     }
 
@@ -162,7 +177,7 @@ public class PlayerController : MonoBehaviour
     public void ResetSpeed()
     {
         _currentSpeed = _fowardSpeed;
-        animationController.SetAnimationSpeed(1f);
+        _animationController.SetAnimationSpeed(1f);
     }
 
     #endregion
