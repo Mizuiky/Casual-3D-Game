@@ -16,7 +16,8 @@ public class CoinCollectable : ItemCollectableBase
 
     public override void Collect()
     {
-        Debug.Log("COLLECTED");
+        base.EnableCollider(false);
+
         _colleted = true;
         OnCollect();
     }

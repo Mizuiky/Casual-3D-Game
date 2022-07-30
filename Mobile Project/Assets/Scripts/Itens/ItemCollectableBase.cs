@@ -50,17 +50,23 @@ public class ItemCollectableBase : MonoBehaviour
 
     public virtual void HideItem()
     {
-        _itemCollider.enabled = false;
+        if(_itemCollider.enabled)
+            EnableCollider(false);
 
-        if(_graphic != null)
+        if (_graphic != null)
             _graphic.SetActive(false);
+    }
+
+    public void EnableCollider(bool enable)
+    {
+        _itemCollider.enabled = enable;
     }
 
     public virtual void OnCollect() { }
 
     private void Init()
     {
-        _itemCollider.enabled = true;
+        EnableCollider(true);
         _graphic.SetActive(true);
     }
 }
