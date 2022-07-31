@@ -90,6 +90,7 @@ public class LevelManager : MonoBehaviour
     #endregion
 
     #region Dinamic Level
+
     public void InitiateDinamicLevel()
     {
         _spawnedPieces = new List<LevelPiece>();
@@ -110,7 +111,7 @@ public class LevelManager : MonoBehaviour
             //set the current bounds.size to get the piece width
             spawnedPiece.Init();
 
-            SetTheNextPiecePosition(spawnedPiece);
+            SetCurrentPiecePosition(spawnedPiece);
         }      
     }
 
@@ -123,7 +124,7 @@ public class LevelManager : MonoBehaviour
         return spawnedPiece ? spawnedPiece : null;
     }
 
-    private void SetTheNextPiecePosition(LevelPiece spawnedPiece)
+    private void SetCurrentPiecePosition(LevelPiece spawnedPiece)
     {
         //reset the piece position to avoid position problems
         var newPosition = Vector3.zero;
@@ -139,21 +140,25 @@ public class LevelManager : MonoBehaviour
             //get the current piece width
             var currentPieceSize = spawnedPiece.Size;
 
-            //get the previous size divided by 2
-            //get the current piece size divided by 2
+            /*Data
+              get the previous size divided by 2
+              get the current piece size divided by 2 
+            */
 
-            //the sum of them 
+            //the sum of this Data plus the newposition.z will be the newPosition to the current piece
 
             newPosition.z += (lastPiece.Size.z / 2) + (currentPieceSize.z / 2);
 
+            //set the newPosition to the currentPiece
             spawnedPiece.SetPosition(newPosition);
         }
         else
         {
-            //the first piece will receive the previous setted startPosition in the inspector
+            //the first piece will receive the setted startPosition
             spawnedPiece.SetPosition(_startPosition.position);
         }
 
+        //add the piece to the _spawnedPieces list
         _spawnedPieces.Add(spawnedPiece);
     }
 
