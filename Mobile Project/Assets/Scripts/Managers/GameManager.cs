@@ -13,6 +13,10 @@ public class GameManager : Singleton<GameManager>
     [SerializeField]
     private UIController _uiController;
 
+    [Header("Level")]
+    [SerializeField]
+    private LevelManager _levelManager;
+
     private void Start()
     {
         Init();
@@ -20,6 +24,7 @@ public class GameManager : Singleton<GameManager>
 
     public void Init()
     {
+        _levelManager.Init();
         _uiController.SetScreenVisibility(UIController.ScreenType.START, true);
     }
 

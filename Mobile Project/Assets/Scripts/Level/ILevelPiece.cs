@@ -4,8 +4,5 @@ using UnityEngine;
 
 public interface ILevelPiece
 {
-    public Transform StartPoint { get; }
-    public Transform EndPoint { get; }
-
-    public void InitPiece(Transform point);
+    public BoxCollider LevelCollider { get; set; }
 }

@@ -3,26 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class LevelPiece : MonoBehaviour, ILevelPiece
+public class LevelPiece : MonoBehaviour
 {
     [SerializeField]
-    private Transform _start;
+    private GameObject _plane;
 
-    [SerializeField]
-    private Transform _end;
+    private float _height = -0.5f;
 
-    public Transform StartPoint 
+    public Vector3 Size
     {
-        get => _start;
+        get => _size;
     }
 
-    public Transform EndPoint 
+    private Vector3 _size;
+
+    public void Init()
     {
-        get => _end;
+        _size = _plane.GetComponent<Renderer>().bounds.size;    
     }
 
-    public void InitPiece(Transform point)
+    public void SetPosition(Vector3 pieceTransform)
     {
-        transform.position = _start.position;
+        pieceTransform.y = _height;
+
+        transform.position = pieceTransform;
     }
 }
