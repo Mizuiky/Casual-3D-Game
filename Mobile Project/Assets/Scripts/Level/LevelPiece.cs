@@ -26,6 +26,11 @@ public class LevelPiece : MonoBehaviour
     {
         pieceTransform.y = _height;
 
+        //use Math.Floor to round down the z position to avoid breaks into the level when using retangular pieces
+        var roundedZ = Mathf.Floor(pieceTransform.z);
+
+        pieceTransform.z = roundedZ;
+
         transform.position = pieceTransform;
     }
 }
