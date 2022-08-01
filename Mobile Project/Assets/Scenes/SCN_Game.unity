@@ -174,11 +174,16 @@ MonoBehaviour:
   _levels:
   - {fileID: 8413913810457419458, guid: 71e53bc65fac6554c9faf955cf0406aa, type: 3}
   - {fileID: 3320812706332568465, guid: 80895d1878bffbb4b8897ae4c7d39d66, type: 3}
+  _startLevelPiece: {fileID: 8108372290805053585, guid: 689a2ba9e439b284bade0e51e916dfc0, type: 3}
   _levelPieces:
   - {fileID: 8108372290805053585, guid: 689a2ba9e439b284bade0e51e916dfc0, type: 3}
-  - {fileID: 1722467563318435243, guid: 17523455d916ca64c99e49827fe933b7, type: 3}
   - {fileID: 5351046139101014857, guid: 1dfb9901068129b4192075cb8d2faeed, type: 3}
-  _numberOfPieces: 10
+  - {fileID: 1722467563318435243, guid: 17523455d916ca64c99e49827fe933b7, type: 3}
+  - {fileID: 2381561515870926083, guid: 79d80f7ed8900c240b0d9243eec453cb, type: 3}
+  - {fileID: 5159702972489227203, guid: fede0762f700643408d2098bbb5db1b8, type: 3}
+  _endLevelPiece: {fileID: 4336284665512841105, guid: afd468d0bfe3caa49ac8f0f0c509898d, type: 3}
+  _timeBetweenPieces: 0.3
+  _numberOfPieces: 6
 --- !u!1 &101429084
 GameObject:
   m_ObjectHideFlags: 0

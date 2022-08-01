@@ -23,8 +23,18 @@ public class LevelManager : MonoBehaviour
     private List<GameObject> _levels;
 
     [Header("Dinamic Level")]
+
+    [SerializeField]
+    private LevelPiece _startLevelPiece;
+
     [SerializeField]
     private List<LevelPiece> _levelPieces;
+
+    [SerializeField]
+    private LevelPiece _endLevelPiece;
+
+    [SerializeField]
+    private float _timeBetweenPieces;
 
     [SerializeField]
     private int _numberOfPieces;
@@ -35,7 +45,7 @@ public class LevelManager : MonoBehaviour
 
     private int _index = 0;
 
-    private GameObject _currentLevel;
+    private GameObject _currentStaticLevel;
 
     private List<LevelPiece> _spawnedPieces;
 
@@ -58,15 +68,12 @@ public class LevelManager : MonoBehaviour
         switch (_levelType)
         {
             case LevelType.STATIC:
-
                 InitializeNextStaticLevel();
-
                 break;
             case LevelType.DINAMIC:
-
                 InitiateDinamicLevel();
-
                 break;
+
             default: return;
         }
     }
@@ -78,11 +85,11 @@ public class LevelManager : MonoBehaviour
         if (_index >= _levels.Count)
             _index = 0;
 
-        if (_currentLevel != null)
-            Destroy(_currentLevel);
+        if (_currentStaticLevel != null)
+            Destroy(_currentStaticLevel);
 
-        _currentLevel = Instantiate(_levels[_index], _levelContainer);
-        _currentLevel.transform.localPosition = Vector3.zero;
+        _currentStaticLevel = Instantiate(_levels[_index], _levelContainer);
+        _currentStaticLevel.transform.localPosition = Vector3.zero;
 
         _index++;
     }
@@ -95,16 +102,23 @@ public class LevelManager : MonoBehaviour
     {
         _spawnedPieces = new List<LevelPiece>();
 
-        for (int i = 0; i < _numberOfPieces; i++)
-        {
-            CreateDinamicPiece();
-        }           
+        StartCoroutine("CreatePiece");
     }
 
-    public void CreateDinamicPiece()
+    private IEnumerator CreatePiece()
     {
-        //get the random piece from _levelPieces list and instantiate it
-        var spawnedPiece = GetRandomPiece();
+        for (int i = 0; i < _numberOfPieces; i++)
+        {
+            CreateDinamicPiece(i);
+
+            yield return new WaitForSeconds(_timeBetweenPieces);
+        }
+    }
+
+    private void CreateDinamicPiece(int index)
+    {
+        //get level piece from _levelPieces list
+        var spawnedPiece = GetPiece(index);
 
         if(spawnedPiece != null)
         {
@@ -115,13 +129,32 @@ public class LevelManager : MonoBehaviour
         }      
     }
 
-    private LevelPiece GetRandomPiece()
+    private LevelPiece GetPiece(int index)
     {
-        var randomPiece = _levelPieces[Random.Range(0, _levelPieces.Count)];
+        LevelPiece randomPiece = null;
 
-        var spawnedPiece = Instantiate(randomPiece, _levelContainer);
+        if (index == 0)
+        {
+            randomPiece = _startLevelPiece;
+        }     
+        else if(index == _numberOfPieces - 1)
+        {
+            randomPiece = _endLevelPiece;
+        }
+        else
+        {
+            //get the random piece from _levelPieces list and instantiate it
+            randomPiece = _levelPieces[Random.Range(0, _levelPieces.Count)];
+        }   
+        
+        if(randomPiece != null)
+        {
+            var spawnedPiece = Instantiate(randomPiece, _levelContainer);
 
-        return spawnedPiece ? spawnedPiece : null;
+            return spawnedPiece ? spawnedPiece : null;
+        }
+
+        return null;
     }
 
     private void SetCurrentPiecePosition(LevelPiece spawnedPiece)

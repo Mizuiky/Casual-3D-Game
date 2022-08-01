@@ -5,6 +5,8 @@ using UnityEngine;
 [System.Serializable]
 public class LevelPiece : MonoBehaviour
 {
+    [Header("Level Piece Setup")]
+
     [SerializeField]
     private GameObject _plane;
 
@@ -34,3 +36,4 @@ public class LevelPiece : MonoBehaviour
         transform.position = pieceTransform;
     }
 }
+
