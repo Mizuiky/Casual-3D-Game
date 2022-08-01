@@ -25,19 +25,7 @@ public class LevelManager : MonoBehaviour
     [Header("Dinamic Level")]
 
     [SerializeField]
-    private LevelPiece _startLevelPiece;
-
-    [SerializeField]
-    private List<LevelPiece> _levelPieces;
-
-    [SerializeField]
-    private LevelPiece _endLevelPiece;
-
-    [SerializeField]
-    private float _timeBetweenPieces;
-
-    [SerializeField]
-    private int _numberOfPieces;
+    private SO_Level _levelSetup;
 
     #endregion
 
@@ -60,10 +48,12 @@ public class LevelManager : MonoBehaviour
 
     public void Init()
     {
-        InitCurrentLevelType();
+        _spawnedPieces = new List<LevelPiece>();
+
+        InitLevelByType();
     }
 
-    public void InitCurrentLevelType()
+    public void InitLevelByType()
     {
         switch (_levelType)
         {
@@ -100,18 +90,18 @@ public class LevelManager : MonoBehaviour
 
     public void InitiateDinamicLevel()
     {
-        _spawnedPieces = new List<LevelPiece>();
+        CleanSpawnedList();
 
         StartCoroutine("CreatePiece");
     }
 
     private IEnumerator CreatePiece()
     {
-        for (int i = 0; i < _numberOfPieces; i++)
+        for (int i = 0; i < _levelSetup._numberOfPieces; i++)
         {
             CreateDinamicPiece(i);
 
-            yield return new WaitForSeconds(_timeBetweenPieces);
+            yield return new WaitForSeconds(_levelSetup._timeBetweenPieces);
         }
     }
 
@@ -120,13 +110,13 @@ public class LevelManager : MonoBehaviour
         //get level piece from _levelPieces list
         var spawnedPiece = GetPiece(index);
 
-        if(spawnedPiece != null)
+        if (spawnedPiece != null)
         {
             //set the current bounds.size to get the piece width
             spawnedPiece.Init();
 
             SetCurrentPiecePosition(spawnedPiece);
-        }      
+        }
     }
 
     private LevelPiece GetPiece(int index)
@@ -135,19 +125,19 @@ public class LevelManager : MonoBehaviour
 
         if (index == 0)
         {
-            randomPiece = _startLevelPiece;
-        }     
-        else if(index == _numberOfPieces - 1)
+            randomPiece = _levelSetup._startLevelPiece;
+        }
+        else if (index == _levelSetup._numberOfPieces - 1)
         {
-            randomPiece = _endLevelPiece;
+            randomPiece = _levelSetup._endLevelPiece;
         }
         else
         {
             //get the random piece from _levelPieces list and instantiate it
-            randomPiece = _levelPieces[Random.Range(0, _levelPieces.Count)];
-        }   
-        
-        if(randomPiece != null)
+            randomPiece = _levelSetup._levelPieces[Random.Range(0, _levelSetup._levelPieces.Count)];
+        }
+
+        if (randomPiece != null)
         {
             var spawnedPiece = Instantiate(randomPiece, _levelContainer);
 
@@ -195,13 +185,26 @@ public class LevelManager : MonoBehaviour
         _spawnedPieces.Add(spawnedPiece);
     }
 
+    private void CleanSpawnedList()
+    {
+        for (int i = _spawnedPieces.Count - 1; i >= 0; i--)
+        {
+            Destroy(_spawnedPieces[i].gameObject);
+        }
+
+        _spawnedPieces.Clear();
+    }
     #endregion
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.A) && _levelType == LevelType.STATIC)
+        if (Input.GetKeyDown(KeyCode.A) && _levelType == LevelType.STATIC)
         {
             InitializeNextStaticLevel();
+        }
+        if (Input.GetKeyDown(KeyCode.Z) && _levelType == LevelType.DINAMIC)
+        {
+            InitiateDinamicLevel();
         }
     }
 }
