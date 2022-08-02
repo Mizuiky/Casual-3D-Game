@@ -121,7 +121,7 @@ public class LevelManager : MonoBehaviour
             if(spawnedPiece.ArtPiecesSize > 0)
             {
                 spawnedPiece.SetArtPieces(_artManager.GetArtByType(_levelSetup._artType));
-                //_artManager.SetArtColor(_levelSetup._artType);
+                _artManager.SetArtColor(_levelSetup._artType);
             }
                 
 
