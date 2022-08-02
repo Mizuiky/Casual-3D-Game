@@ -51,7 +51,11 @@ public class LevelPiece : MonoBehaviour
 
     private void GetArtPieces()
     {
-        foreach(var art in transform.GetComponentsInChildren<ArtPiece>())
+        var list = transform.GetComponentsInChildren<ArtPiece>();
+
+        var list2 = transform.GetComponentInChildren<ArtPiece>();
+
+        foreach (var art in transform.GetComponentsInChildren<ArtPiece>())
         {
             _artPieces.Add(art);
         }
