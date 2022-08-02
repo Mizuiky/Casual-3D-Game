@@ -7,7 +7,7 @@ public class SO_Level : ScriptableObject
 {
     [Header("Dinamic Level Setup ")]
 
-    public ArtType _type;
+    public ArtType _artType;
 
     [Header("Pieces")]
 
