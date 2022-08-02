@@ -27,6 +27,9 @@ public class LevelManager : MonoBehaviour
     [SerializeField]
     private SO_Level _levelSetup;
 
+    [SerializeField]
+    private ArtManager _artManager;
+
     #endregion
 
     #region Private Fields
@@ -114,6 +117,9 @@ public class LevelManager : MonoBehaviour
         {
             //set the current bounds.size to get the piece width
             spawnedPiece.Init();
+
+            if(spawnedPiece.ArtPiecesSize > 0)
+                spawnedPiece.SetArtPieces(_artManager.GetArtByType(_levelSetup._artType));
 
             SetCurrentPiecePosition(spawnedPiece);
         }

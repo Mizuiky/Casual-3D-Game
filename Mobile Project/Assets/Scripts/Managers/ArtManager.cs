@@ -8,18 +8,18 @@ public class ArtManager : MonoBehaviour
     [SerializeField]
     private List<ArtSetup> _artSetup;
 
-    //public ArtSetup GetArtByType(ArtType type)
-    //{
-    //    //var artes = _artSetup.ForEach(x => x.type == type);
+    public GameObject GetArtByType(ArtType type)
+    {
+        var art = _artSetup.Where(x => x.type == type).Select(x => x.art).FirstOrDefault();
 
-    //    //return artes;
-    //}
+        return art;
+    }
 }
 
 public enum ArtType
 {
-    Planet1,
-    Planet2
+    Forest1,
+    Forest2
 }
 
 [System.Serializable]
