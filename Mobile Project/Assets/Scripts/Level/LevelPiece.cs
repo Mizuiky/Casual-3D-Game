@@ -10,18 +10,31 @@ public class LevelPiece : MonoBehaviour
     [SerializeField]
     private GameObject _plane;
 
+    #region Private Fields
+
     private float _height = -0.5f;
+
+    private List<ArtPiece> _artPieces = new List<ArtPiece>();
+
+    private Vector3 _size;
+
+    #endregion
 
     public Vector3 Size
     {
         get => _size;
-    }
+    } 
 
-    private Vector3 _size;
+    public int ArtPiecesSize
+    {
+        get => _artPieces.Count;
+    }
 
     public void Init()
     {
-        _size = _plane.GetComponent<Renderer>().bounds.size;    
+        _size = _plane.GetComponent<Renderer>().bounds.size;
+
+        GetArtPieces();
     }
 
     public void SetPosition(Vector3 pieceTransform)
@@ -34,6 +47,22 @@ public class LevelPiece : MonoBehaviour
         pieceTransform.z = roundedZ;
 
         transform.position = pieceTransform;
+    }
+
+    private void GetArtPieces()
+    {
+        foreach(var art in transform.GetComponentsInChildren<ArtPiece>())
+        {
+            _artPieces.Add(art);
+        }
+    }
+
+    public void SetArtPieces(GameObject newArt)
+    {
+        foreach (var art in _artPieces)
+        {
+            art.ChangeArt(newArt);
+        }
     }
 }
 
