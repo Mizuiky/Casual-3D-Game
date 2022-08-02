@@ -25,11 +25,11 @@ public class ColorManager : MonoBehaviour
     {
         if(type != ArtType.Default)
         {
-            var colorSetup = _colorSetup.Where(x => x.type == type).Select(x => x.colors).FirstOrDefault();
+            var colorSetup = _colorSetup.Find(x => x.type == type);
 
             for (int i = 0; i < _materials.Count; i++)
             {
-                _materials[i].SetColor("_Color", colorSetup[i]);
+                _materials[i].SetColor("_Color", colorSetup.colors[i]);
             }
         }     
     }

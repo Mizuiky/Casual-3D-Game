@@ -13,10 +13,10 @@ public class ArtManager : MonoBehaviour
 
     public GameObject GetArtByType(ArtType type)
     {
-        var art = _artSetup.Where(x => x.type == type).Select(x => x.art).FirstOrDefault();
+        var art = _artSetup.Find(x => x.type == type);
 
         if(art != null)
-            return art;
+            return art.art;
 
         return null;
     }
