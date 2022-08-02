@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _plane: {fileID: 6098487895644522155}
+  _art: {fileID: 0}
 --- !u!1 &6098487895644522155
 GameObject:
   m_ObjectHideFlags: 0
