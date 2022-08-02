@@ -18,9 +18,7 @@ MonoBehaviour:
   - {fileID: 5389225425421039513, guid: 2091dc60b272a6b47878542d775ba0c6, type: 3}
   - {fileID: 3997840874508537568, guid: 49268139b8a10e343a13ba7ae34b40da, type: 3}
   - {fileID: 2381561515870926083, guid: 79d80f7ed8900c240b0d9243eec453cb, type: 3}
-  - {fileID: 5351046139101014857, guid: 1dfb9901068129b4192075cb8d2faeed, type: 3}
   - {fileID: 1722467563318435243, guid: 17523455d916ca64c99e49827fe933b7, type: 3}
-  - {fileID: 5991410948364656405, guid: b40952b84db1bc4469a21d4abda1be49, type: 3}
   _endLevelPiece: {fileID: 4336284665512841105, guid: afd468d0bfe3caa49ac8f0f0c509898d, type: 3}
   _timeBetweenPieces: 0.3
   _numberOfPieces: 10

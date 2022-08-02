@@ -12,9 +12,17 @@ public class ColorManager : MonoBehaviour
     [SerializeField]
     private List<ColorSetup> _colorSetup;
 
-    public void SetColorsByArtType(ArtType type)
-    {
+    [SerializeField]
+    private List<Color> _defaultColors;
 
+    public void SetColorByArtType(ArtType type)
+    {
+        var colorSetup = _colorSetup.Find(x => x.type == type).colors;
+
+        for(int i = 0; i < _materials.Count; i++)
+        {
+            _materials[i].SetColor("_Color", colorSetup[i]);
+        }
     }
 }
 

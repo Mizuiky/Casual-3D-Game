@@ -8,11 +8,19 @@ public class ArtManager : MonoBehaviour
     [SerializeField]
     private List<ArtSetup> _artSetup;
 
+    [SerializeField]
+    private ColorManager _colorManager;
+
     public GameObject GetArtByType(ArtType type)
     {
-        var art = _artSetup.Where(x => x.type == type).Select(x => x.art).FirstOrDefault();
+        var art = _artSetup.Find(x => x.type == type).art;
 
         return art;
+    }
+
+    public void SetArtColor(ArtType type)
+    {
+        _colorManager.SetColorByArtType(type);
     }
 }
 
