@@ -15,13 +15,29 @@ public class ColorManager : MonoBehaviour
     [SerializeField]
     private List<Color> _defaultColors;
 
+    private void Start()
+    {
+        SetDefaultColors();
+    }
+
     public void SetColorByArtType(ArtType type)
     {
-        var colorSetup = _colorSetup.Find(x => x.type == type).colors;
-
-        for(int i = 0; i < _materials.Count; i++)
+        if(type != ArtType.Default)
         {
-            _materials[i].SetColor("_Color", colorSetup[i]);
+            var colorSetup = _colorSetup.Find(x => x.type == type).colors;
+
+            for (int i = 0; i < _materials.Count; i++)
+            {
+                _materials[i].SetColor("_Color", colorSetup[i]);
+            }
+        }     
+    }
+
+    public void SetDefaultColors()
+    {
+        for (int i = 0; i < _materials.Count; i++)
+        {
+            _materials[i].SetColor("_Color", _defaultColors[i]);
         }
     }
 }

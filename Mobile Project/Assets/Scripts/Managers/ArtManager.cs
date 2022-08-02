@@ -13,9 +13,12 @@ public class ArtManager : MonoBehaviour
 
     public GameObject GetArtByType(ArtType type)
     {
-        var art = _artSetup.Find(x => x.type == type).art;
+        var art = _artSetup.Where(x => x.type == type).Select(x => x.art).FirstOrDefault();
 
-        return art;
+        if(art != null)
+            return art;
+
+        return null;
     }
 
     public void SetArtColor(ArtType type)
@@ -26,6 +29,7 @@ public class ArtManager : MonoBehaviour
 
 public enum ArtType
 {
+    Default,
     Forest1,
     Forest2
 }

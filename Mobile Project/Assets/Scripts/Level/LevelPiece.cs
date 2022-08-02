@@ -57,12 +57,15 @@ public class LevelPiece : MonoBehaviour
         }
     }
 
-    public void SetArtPieces(GameObject newArt)
+    public void SetArtPieces(GameObject newArt = null)
     {
-        foreach (var art in _artPieces)
+        if(newArt != null)
         {
-            art.ChangeArt(newArt);
-        }
+            foreach (var art in _artPieces)
+            {
+                art.ChangeArt(newArt);
+            }
+        }     
     }
 }
 
