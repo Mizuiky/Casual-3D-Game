@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ColorManager : MonoBehaviour
@@ -24,7 +25,7 @@ public class ColorManager : MonoBehaviour
     {
         if(type != ArtType.Default)
         {
-            var colorSetup = _colorSetup.Find(x => x.type == type).colors;
+            var colorSetup = _colorSetup.Where(x => x.type == type).Select(x => x.colors).FirstOrDefault();
 
             for (int i = 0; i < _materials.Count; i++)
             {
