@@ -23,7 +23,7 @@ public class ColorManager : MonoBehaviour
 
     public void SetColorByArtType(ArtType type)
     {
-        if(type != ArtType.Default)
+        if (type != ArtType.Default)
         {
             var colorSetup = _colorSetup.Find(x => x.type == type);
 
@@ -31,7 +31,9 @@ public class ColorManager : MonoBehaviour
             {
                 _materials[i].SetColor("_Color", colorSetup.colors[i]);
             }
-        }     
+        }
+        else
+            SetDefaultColors();
     }
 
     public void SetDefaultColors()

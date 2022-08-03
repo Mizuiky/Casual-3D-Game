@@ -615,18 +615,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _materials:
+  - {fileID: 2100000, guid: b8d5a033ad8a2ad40a16a3f8b373edf4, type: 2}
   - {fileID: 2100000, guid: 8e078783b694fb74aa5c7f078bd5316b, type: 2}
   - {fileID: 2100000, guid: 272887e3f803de14d8162a8f0750026d, type: 2}
   _colorSetup:
   - type: 1
     colors:
+    - {r: 0.88600844, g: 0.47770557, b: 0.8962264, a: 0}
     - {r: 0.7032086, g: 0.36044857, b: 0.9433962, a: 0}
+    - {r: 0.7169812, g: 0.513857, b: 0.33481666, a: 0}
+  - type: 2
+    colors:
+    - {r: 0.38781592, g: 0.7586564, b: 0.990566, a: 0}
+    - {r: 0.29214135, g: 0.49381232, b: 0.9528302, a: 0}
     - {r: 0.7169812, g: 0.513857, b: 0.33481666, a: 0}
   - type: 2
     colors:
     - {r: 0.9433962, g: 0.4494482, b: 0.933159, a: 0}
     - {r: 0.7169812, g: 0.513857, b: 0.33481666, a: 0}
   _defaultColors:
+  - {r: 0.9433962, g: 0.82018167, b: 0.12014952, a: 0}
   - {r: 0.4392157, g: 0.9019608, b: 0.8392157, a: 0}
   - {r: 0.9490196, g: 0.74509805, b: 0.61960787, a: 0}
 --- !u!1 &899154405
@@ -809,7 +817,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.15149681, y: 0.000000019015271, z: -0.0000000029143916, w: 0.98845774}
+  m_LocalRotation: {x: 0.15149681, y: -0.000000019015273, z: 0.0000000029143918, w: 0.98845774}
   m_LocalPosition: {x: 0, y: 5, z: -11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1048,7 +1056,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1086235536}
-  m_LocalRotation: {x: 0.15149681, y: 0.000000019015271, z: -0.0000000029143916, w: 0.98845774}
+  m_LocalRotation: {x: 0.15149681, y: -0.000000019015273, z: 0.0000000029143918, w: 0.98845774}
   m_LocalPosition: {x: 0, y: 5, z: -11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

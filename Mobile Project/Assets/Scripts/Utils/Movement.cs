@@ -50,7 +50,6 @@ public class Movement : MonoBehaviour
 
     private void StartToMove(bool isRunning)
     {
-        Debug.Log("Start to move 1");
         _canMove = isRunning;
 
         if (isRunning)
@@ -61,15 +60,12 @@ public class Movement : MonoBehaviour
 
     private IEnumerator Move()
     {
-        Debug.Log("Start to move 2");
         float time = 0;
 
         while (_canMove)
         {
-            Debug.Log("Start to move 3");
             while (time < _duration)
             {
-                Debug.Log("Start to move 4");
                 _currentPosition = transform.position;
 
                 transform.position = Vector3.Lerp(_currentPosition, _positionsToGo[_index].position, (time / _duration));
