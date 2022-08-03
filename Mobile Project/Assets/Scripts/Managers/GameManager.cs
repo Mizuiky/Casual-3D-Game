@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Core.Singleton;
+using System;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -16,6 +17,18 @@ public class GameManager : Singleton<GameManager>
     [Header("Level")]
     [SerializeField]
     private LevelManager _levelManager;
+
+    #region Events
+
+    public event Action<bool> OnRunningGame;
+
+    #endregion
+    public bool IsRunning
+    {
+        get => _isRunning;
+    }
+
+    private bool _isRunning;
 
     private void Start()
     {
@@ -32,12 +45,20 @@ public class GameManager : Singleton<GameManager>
 
     public void StartGame()
     {
+        _isRunning = true;
+
+        OnRunningGame?.Invoke(_isRunning);
+
         _playerController.StartToRun();
     }
 
     public void EndGame()
     {
+        _isRunning = false;
+
         _playerController.StopToRun();
+
+        OnRunningGame?.Invoke(_isRunning);
 
         _uiController.SetScreenVisibility(UIController.ScreenType.END, true);   
     }
