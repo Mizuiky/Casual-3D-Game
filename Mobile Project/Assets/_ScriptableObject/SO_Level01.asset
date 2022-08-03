@@ -19,6 +19,7 @@ MonoBehaviour:
   - {fileID: 3997840874508537568, guid: 49268139b8a10e343a13ba7ae34b40da, type: 3}
   - {fileID: 2381561515870926083, guid: 79d80f7ed8900c240b0d9243eec453cb, type: 3}
   - {fileID: 8108372290805053585, guid: 689a2ba9e439b284bade0e51e916dfc0, type: 3}
+  - {fileID: 7169464275466097327, guid: 198d9b59e5f4b9b40bacd1191832a15f, type: 3}
   _endLevelPiece: {fileID: 4336284665512841105, guid: afd468d0bfe3caa49ac8f0f0c509898d, type: 3}
   _timeBetweenPieces: 0.3
   _numberOfPieces: 10
