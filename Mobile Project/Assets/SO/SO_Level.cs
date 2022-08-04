@@ -17,7 +17,5 @@ public class SO_Level : ScriptableObject
 
     public LevelPiece _endLevelPiece;
 
-    public float _timeBetweenPieces;
-
     public int _numberOfPieces;
 }

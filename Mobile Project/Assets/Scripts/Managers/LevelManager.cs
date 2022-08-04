@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using DG.Tweening;
 
 public class LevelManager : MonoBehaviour
 {
@@ -29,6 +30,17 @@ public class LevelManager : MonoBehaviour
 
     [SerializeField]
     private ArtManager _artManager;
+
+    [Header("Level Animation Setup")]
+
+    [SerializeField]
+    private float _scaleDuration;
+
+    [SerializeField]
+    private float _timeBetweenPieces;
+
+    [SerializeField]
+    private Ease _ease;
 
     #endregion
 
@@ -95,16 +107,28 @@ public class LevelManager : MonoBehaviour
     {
         CleanSpawnedList();
 
-        StartCoroutine("CreatePiece");
+        CreatePieces();
+
+        StartCoroutine("ScalePiece");
     }
 
-    private IEnumerator CreatePiece()
+    private IEnumerator ScalePiece()
+    {
+        _spawnedPieces.ForEach(x => x.transform.localScale = Vector3.zero);
+
+        for(int i = 0; i < _spawnedPieces.Count; i++)
+        {
+            _spawnedPieces[i].transform.DOScale(1, _scaleDuration).SetEase(_ease);
+
+            yield return new WaitForSeconds(_timeBetweenPieces);
+        }  
+    }
+
+    private void CreatePieces()
     {
         for (int i = 0; i < _levelSetup._numberOfPieces; i++)
         {
             CreateDinamicPiece(i);
-
-            yield return new WaitForSeconds(_levelSetup._timeBetweenPieces);
         }
     }
 
