@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu]
-public class SO_Level : ScriptableObject
+public class SO_LevelSetup : ScriptableObject
 {
     [Header("Dinamic Level Setup ")]
 
