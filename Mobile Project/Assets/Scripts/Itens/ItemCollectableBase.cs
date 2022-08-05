@@ -17,7 +17,7 @@ public class ItemCollectableBase : MonoBehaviour
 
     protected PlayerController _player;
 
-    private void Start()
+    private void Awake()
     {
         Init();    
     }
@@ -68,5 +68,7 @@ public class ItemCollectableBase : MonoBehaviour
     {
         EnableCollider(true);
         _graphic.SetActive(true);
+
+        ItemCollectableManager.Instance.RegisterItem(gameObject);
     }
 }

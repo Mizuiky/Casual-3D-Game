@@ -26,21 +26,13 @@ public class LevelManager : MonoBehaviour
     [Header("Dinamic Level")]
 
     [SerializeField]
-    private SO_Level _levelSetup;
+    private SO_LevelSetup _levelSetup;
 
     [SerializeField]
     private ArtManager _artManager;
 
-    [Header("Level Animation Setup")]
-
     [SerializeField]
-    private float _scaleDuration;
-
-    [SerializeField]
-    private float _timeBetweenPieces;
-
-    [SerializeField]
-    private Ease _ease;
+    private LevelAnimationController _animationController;
 
     #endregion
 
@@ -109,19 +101,11 @@ public class LevelManager : MonoBehaviour
 
         CreatePieces();
 
-        StartCoroutine("ScalePiece");
-    }
+        ItemCollectableManager.Instance.FillCoinList();
 
-    private IEnumerator ScalePiece()
-    {
-        _spawnedPieces.ForEach(x => x.transform.localScale = Vector3.zero);
+        var coins = ItemCollectableManager.Instance.CoinList;
 
-        for(int i = 0; i < _spawnedPieces.Count; i++)
-        {
-            _spawnedPieces[i].transform.DOScale(1, _scaleDuration).SetEase(_ease);
-
-            yield return new WaitForSeconds(_timeBetweenPieces);
-        }  
+        _animationController.ScaleLevel(_spawnedPieces, coins);
     }
 
     private void CreatePieces()
@@ -148,7 +132,6 @@ public class LevelManager : MonoBehaviour
                 _artManager.SetArtColor(_levelSetup._artType);
             }
                 
-
             SetCurrentPiecePosition(spawnedPiece);
         }
     }
@@ -238,6 +221,7 @@ public class LevelManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Z) && _levelType == LevelType.DINAMIC)
         {
+            ItemCollectableManager.Instance.ResetItems();
             InitiateDinamicLevel();
         }
     }
