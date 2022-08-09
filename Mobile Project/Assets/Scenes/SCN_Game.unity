@@ -1878,7 +1878,8 @@ MonoBehaviour:
   _animationController: {fileID: 1650726998}
   _speedPowerUpAnimation: 17
   _bounceDuration: 0.1
-  _bounceScale: 1.2
+  _bounceScale: 1.1
+  _bounceEase: 1
 --- !u!54 &1326400839
 Rigidbody:
   m_ObjectHideFlags: 0
