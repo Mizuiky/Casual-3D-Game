@@ -43,6 +43,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float _speedPowerUpAnimation;
 
+    [Header("Bounce")
+        ]
+    [SerializeField]
+    private float _bounceDuration;
+
+    [SerializeField]
+    private float _bounceScale;
+
+    [SerializeField]
+    private Ease _bounceEase;
+
     #endregion
 
     #region Private Fields
@@ -181,4 +192,9 @@ public class PlayerController : MonoBehaviour
     }
 
     #endregion
+
+    public void Bounce()
+    {
+        transform.DOScale(_bounceScale, _bounceDuration).SetLoops(2, LoopType.Yoyo).SetEase(_bounceEase);
+    }
 }

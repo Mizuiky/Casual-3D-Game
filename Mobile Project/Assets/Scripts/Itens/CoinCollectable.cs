@@ -25,6 +25,9 @@ public class CoinCollectable : ItemCollectableBase
     public override void OnCollect()
     {
         base.OnCollect();
+
+        if(_player != null)
+            _player.Bounce();
     }
 
     public override void HideItem()
