@@ -19,5 +19,7 @@ MonoBehaviour:
   - {fileID: 5389225425421039513, guid: 2091dc60b272a6b47878542d775ba0c6, type: 3}
   - {fileID: 3997840874508537568, guid: 49268139b8a10e343a13ba7ae34b40da, type: 3}
   - {fileID: 7169464275466097327, guid: 198d9b59e5f4b9b40bacd1191832a15f, type: 3}
+  - {fileID: 5991410948364656405, guid: b40952b84db1bc4469a21d4abda1be49, type: 3}
+  - {fileID: 3397755900546118491, guid: a1ac8dd82e9498f49a6e27a2f329edea, type: 3}
   _endLevelPiece: {fileID: 4336284665512841105, guid: afd468d0bfe3caa49ac8f0f0c509898d, type: 3}
   _numberOfPieces: 10

@@ -40,6 +40,8 @@ public class LevelAnimationController : MonoBehaviour
         _objectEase = Ease.OutBack;
     }
 
+    #region Scale
+
     public void ScaleLevel(List<LevelPiece> _pieces, List<CoinCollectable> _coins)
     {
         _coinList = _coins;
@@ -60,7 +62,8 @@ public class LevelAnimationController : MonoBehaviour
         yield return StartCoroutine(Scale(_coinList));
     }
 
-    public IEnumerator Scale<T>(List<T> levelObject) where T : MonoBehaviour
+    //scale any generic object from a list of class that inherits from monobehavior
+    private IEnumerator Scale<T>(List<T> levelObject) where T : MonoBehaviour
     {
         if (levelObject.Count > 0)
         {
@@ -73,12 +76,14 @@ public class LevelAnimationController : MonoBehaviour
         }
     }
 
-    public void ResetScale<T>(List<T> levelObject) where T : MonoBehaviour
+    private void ResetScale<T>(List<T> levelObject) where T : MonoBehaviour
     {
         levelObject.ForEach(x => x.transform.localScale = Vector3.zero);
     }
 
-    public void SetCurrentAnimationSetup(LevelObjectType type)
+    #endregion
+
+    private void SetCurrentAnimationSetup(LevelObjectType type)
     {
         if (type == LevelObjectType.Piece)
         {

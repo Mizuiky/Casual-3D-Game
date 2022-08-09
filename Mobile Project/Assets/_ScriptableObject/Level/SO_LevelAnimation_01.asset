@@ -16,5 +16,5 @@ MonoBehaviour:
   _timeBetweenPieces: 0.05
   _pieceEase: 27
   _coinScaleDuration: 0.3
-  _timeBetweenCoins: 0.05
-  _coinEase: 27
+  _timeBetweenCoins: 0.2
+  _coinEase: 25
