@@ -12,13 +12,16 @@ public class TouchController : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetMouseButton(0))
+        if(GameManager.Instance.IsRunning)
         {
-            _speed = Input.mousePosition.x - _previousPosition.x;
-            Move();
-        }
+            if (Input.GetMouseButton(0))
+            {
+                _speed = Input.mousePosition.x - _previousPosition.x;
+                Move();
+            }
 
-        _previousPosition = Input.mousePosition;
+            _previousPosition = Input.mousePosition;
+        }   
     }
 
     private void Move()
