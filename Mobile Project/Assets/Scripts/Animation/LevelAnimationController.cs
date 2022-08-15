@@ -56,10 +56,10 @@ public class LevelAnimationController : MonoBehaviour
     private IEnumerator ScaleLevelObjects()
     {
         SetCurrentAnimationSetup(LevelObjectType.Piece);
-        yield return StartCoroutine(Scale(_pieceList));
+        yield return Scale(_pieceList);
 
         SetCurrentAnimationSetup(LevelObjectType.Coin);
-        yield return StartCoroutine(Scale(_coinList));
+        yield return Scale(_coinList);
     }
 
     //scale any generic object from a list of class that inherits from monobehavior

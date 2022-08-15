@@ -18,9 +18,17 @@ public class GameManager : Singleton<GameManager>
     [SerializeField]
     private LevelManager _levelManager;
 
+    [SerializeField]
+    private Transform _GroundCollider;
+
     [Header("Particle")]
     [SerializeField]
     private ParticleController _particleController;
+
+    public Transform LevelGround
+    {
+        get => _GroundCollider;
+    }
 
     #region Events
 
@@ -56,7 +64,7 @@ public class GameManager : Singleton<GameManager>
         _playerController.StartToRun();
     }
 
-    public void EndGame()
+    public void StopGame()
     {
         _isRunning = false;
 
@@ -69,6 +77,8 @@ public class GameManager : Singleton<GameManager>
 
     public void CallVictory()
     {
+        _isRunning = false;
+
         _playerController.PlayerVictory();
 
         _uiController.SetScreenVisibility(UIController.ScreenType.VICTORY, true);       
