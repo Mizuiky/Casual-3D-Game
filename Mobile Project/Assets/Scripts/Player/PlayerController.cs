@@ -58,9 +58,7 @@ public class PlayerController : MonoBehaviour
 
     #region Private Fields
 
-    private bool _canRun;
     private bool _invencible;
-
 
     private Vector3 _position;
 
@@ -82,7 +80,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (!_canRun)
+        if (!GameManager.Instance.IsRunning)
             return;
 
         Move();
@@ -90,7 +88,6 @@ public class PlayerController : MonoBehaviour
 
     public void Init()
     {
-        _canRun = false;
         _invencible = false;
         _currentSpeed = _fowardSpeed;
         _rb.useGravity = true;
@@ -116,21 +113,17 @@ public class PlayerController : MonoBehaviour
 
     public void StartToRun()
     {
-        _canRun = true;
         _animationController.Play(AnimationType.RUN);
     }
 
     public void StopToRun()
     {
-        _canRun = false;
         MoveBack();
-
         _animationController.Play(AnimationType.DEAD);
     }
 
     public void PlayerVictory()
     {
-        _canRun = false;
         _animationController.Play(AnimationType.IDLE);
     }
 

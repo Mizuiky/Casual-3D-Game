@@ -12,7 +12,7 @@ public class PlayerCollision : MonoBehaviour
         if(collision.transform.CompareTag("Enemy"))
         {
             if(!_player.Invencible)
-                GameManager.Instance.EndGame();
+                GameManager.Instance.StopGame();
         }  
     }
 
