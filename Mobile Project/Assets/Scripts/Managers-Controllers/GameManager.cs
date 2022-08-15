@@ -18,6 +18,10 @@ public class GameManager : Singleton<GameManager>
     [SerializeField]
     private LevelManager _levelManager;
 
+    [Header("Particle")]
+    [SerializeField]
+    private ParticleController _particleController;
+
     #region Events
 
     public event Action<bool> OnRunningGame;
@@ -68,6 +72,15 @@ public class GameManager : Singleton<GameManager>
         _playerController.PlayerVictory();
 
         _uiController.SetScreenVisibility(UIController.ScreenType.VICTORY, true);       
+    }
+
+    #endregion
+
+    #region Particle System
+
+    public void PlayParticle(ParticleType type, Vector3 position)
+    {
+        _particleController.PlayParticleByType(type, position);
     }
 
     #endregion
