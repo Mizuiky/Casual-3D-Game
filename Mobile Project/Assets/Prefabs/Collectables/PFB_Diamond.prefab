@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6832075095145444825}
   - component: {fileID: 3570458620223095826}
   m_Layer: 0
-  m_Name: PFB_Coin
+  m_Name: PFB_Diamond
   m_TagString: Coin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
