@@ -9,8 +9,7 @@ namespace Screen
     public enum ScreenType
     {
         Main,
-        Pause,
-        Menu
+        Pause
     }
 
     public class ScreenBase : MonoBehaviour
@@ -19,9 +18,15 @@ namespace Screen
         private List<GameObject> _screenItems;
 
         [SerializeField]
+        private List<TextTyper> _textToType;
+
+        [SerializeField]
+        private bool _hideOnStart;
+
+        [SerializeField]
         private ScreenType _type;
 
-        [Header("Animation")]
+        [Header("Scale Animation")]
 
         [SerializeField]
         private float _scaleDuration;
@@ -32,6 +37,11 @@ namespace Screen
         [SerializeField]
         private Ease _ease;
 
+        [Header("Typer Animation")]
+
+        [SerializeField]
+        private  float _delayBetweenPhrases;
+
         public ScreenType Type
         {
             get => _type;
@@ -39,6 +49,9 @@ namespace Screen
 
         private void Start()
         {
+            if (_hideOnStart)
+                Hide();
+
             Show();
         }
 
@@ -48,13 +61,32 @@ namespace Screen
             _screenItems.ForEach(x => x.SetActive(false));
         }
 
+        #region ShowItems
+
         [Button]
         public void Show()
         {
-            ShowItems();
+            StartCoroutine(ShowItems());
         }
 
-        public void ShowItems()
+        private IEnumerator ShowItems()
+        {
+            yield return StartType();
+
+            yield return ScaleAnimation();
+        }
+
+        private IEnumerator StartType()
+        {
+            foreach (TextTyper text in _textToType)
+            {
+                text.TypeText();
+
+                yield return new WaitForSeconds(_delayBetweenPhrases);
+            }
+        }
+
+        public IEnumerator ScaleAnimation()
         {
             for(int i = 0; i < _screenItems.Count; i++)
             {
@@ -64,6 +96,10 @@ namespace Screen
 
                 obj.transform.DOScale(0, _scaleDuration).From().SetDelay(i * _animationDelay).SetEase(_ease);
             }
+
+            yield return null;
         }
+
+        #endregion
     }
 }
