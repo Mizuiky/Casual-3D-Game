@@ -18,7 +18,7 @@ public class ColorManager : MonoBehaviour
 
     private void Start()
     {
-        SetDefaultColors();
+        //SetDefaultColors();
     }
 
     public void SetColorByArtType(ArtType type)

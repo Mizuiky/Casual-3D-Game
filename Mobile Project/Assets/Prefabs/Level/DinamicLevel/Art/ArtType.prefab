@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7237909179821012951}
   - component: {fileID: 4103877960046890948}
+  - component: {fileID: 8406110192363811584}
   m_Layer: 0
   m_Name: ArtType
   m_TagString: Untagged
@@ -46,6 +47,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currentArt: {fileID: 3817149144249988924}
+--- !u!65 &8406110192363811584
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5246311900707803013}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.4600086, y: 4.0735474, z: 1.2822688}
+  m_Center: {x: 0.015108943, y: 1.5367736, z: -0.14113456}
 --- !u!1001 &4051081588685523565
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -96,6 +110,14 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: ffc35ca11166a49408f45ad94d89ba1b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: ffc35ca11166a49408f45ad94d89ba1b, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: ffc35ca11166a49408f45ad94d89ba1b, type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ffc35ca11166a49408f45ad94d89ba1b, type: 3}
       propertyPath: m_Name
