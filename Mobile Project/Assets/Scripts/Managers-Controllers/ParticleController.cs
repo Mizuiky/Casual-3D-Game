@@ -49,6 +49,7 @@ public class ParticleController : MonoBehaviour
 
 public enum ParticleType
 {
+    MAIN,
     COLLECTABLE1,
     DEATH,
     MONSTERDEATH,

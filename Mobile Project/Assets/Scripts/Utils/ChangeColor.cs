@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-[RequireComponent(typeof (MeshRenderer))]
+[RequireComponent(typeof(MeshRenderer))]
 public class ChangeColor : MonoBehaviour
 {
     [SerializeField]
@@ -17,7 +17,7 @@ public class ChangeColor : MonoBehaviour
     private void OnValidate()
     {
         _mesh = GetComponent<MeshRenderer>();
-        
+
     }
 
     private void Start()
@@ -32,3 +32,4 @@ public class ChangeColor : MonoBehaviour
         _mesh.materials[0].DOColor(_originalColor, _transitionDuration).SetDelay(.3f);
     }
 }
+

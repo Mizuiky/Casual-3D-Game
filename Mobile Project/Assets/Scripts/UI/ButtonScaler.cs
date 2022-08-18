@@ -17,7 +17,7 @@ public class ButtonScaler : ClickHelper
 
     private Vector3 _originalScale;
 
-    private void Start()
+    private void Awake()
     {
         _originalScale = transform.localScale;
     }
