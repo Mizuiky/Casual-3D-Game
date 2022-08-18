@@ -55,6 +55,9 @@ namespace Screen
 
         public void Hide()
         {
+            if (gameObject.activeInHierarchy)
+                gameObject.SetActive(false);
+
             _background.enabled = false;
             _screenItems.ForEach(x => x.SetActive(false));
         }
@@ -63,6 +66,9 @@ namespace Screen
 
         public void Show()
         {
+            if (!gameObject.activeInHierarchy)
+                gameObject.SetActive(true);
+
             _background.enabled = true;
             StartCoroutine(ShowItems());
         }
