@@ -12,8 +12,6 @@ public class MainMenuHelper : MonoBehaviour
     [SerializeField]
     private ScreenType _type;
 
-
-
     private void Start()
     {
         UITouch.onTouchButton += GetParticleController;

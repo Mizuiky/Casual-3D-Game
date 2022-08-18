@@ -3,13 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using NaughtyAttributes;
+using UnityEngine.UI;
+using Utils;
 
 namespace Screen
 {
     public enum ScreenType
     {
         Main,
-        Pause
+        Start,
+        Pause,
+        Looser,
+        Winner,
     }
 
     public class ScreenBase : MonoBehaviour
@@ -21,7 +26,7 @@ namespace Screen
         private List<TextTyper> _textToType;
 
         [SerializeField]
-        private bool _hideOnStart;
+        private Image _background;
 
         [SerializeField]
         private ScreenType _type;
@@ -47,40 +52,37 @@ namespace Screen
             get => _type;
         }
 
-        private void Start()
-        {
-            if (_hideOnStart)
-                Hide();
 
-            Show();
-        }
-
-        [Button]
         public void Hide()
         {
+            _background.enabled = false;
             _screenItems.ForEach(x => x.SetActive(false));
         }
 
         #region ShowItems
 
-        [Button]
         public void Show()
         {
+            _background.enabled = true;
             StartCoroutine(ShowItems());
         }
 
         private IEnumerator ShowItems()
         {
-            yield return StartType();
+            if(_textToType.Count > 0)
+                yield return StartType();
 
             yield return ScaleAnimation();
         }
 
         private IEnumerator StartType()
         {
-            foreach (TextTyper text in _textToType)
+            for(int i = 0; i < _textToType.Count; i++)
             {
-                text.TypeText();
+                _textToType[i].StartTextTyper();
+
+                if (i == _textToType.Count - 1)
+                    yield return null;
 
                 yield return new WaitForSeconds(_delayBetweenPhrases);
             }
