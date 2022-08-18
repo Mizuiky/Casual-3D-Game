@@ -3,36 +3,40 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class TextTyper : MonoBehaviour
+namespace Utils
 {
-    [SerializeField]
-    private TextMeshProUGUI _text;
-
-    [SerializeField]
-    private string _textToShow;
-
-    [SerializeField]
-    private float _timeBetweenLetters;
-
-    private void Start()
+    public class TextTyper : MonoBehaviour
     {
-        _text.text = "";
-    }
+        [SerializeField]
+        private TextMeshProUGUI _text;
 
-    public void TypeText()
-    {
-        StartCoroutine(Type());
-    }
+        [SerializeField]
+        private string _textToShow;
 
-    private IEnumerator Type()
-    {
-        var letterList = _textToShow.ToCharArray();
+        [SerializeField]
+        private float _timeBetweenLetters;
 
-        foreach(char c in letterList)
+        private void Awake()
         {
-            _text.text += c;
+            _text.text = "";
+        }
 
-            yield return new WaitForSeconds(_timeBetweenLetters);
+        public void StartTextTyper()
+        {
+            StartCoroutine(Type());
+        }
+
+        private IEnumerator Type()
+        {
+            var letterList = _textToShow.ToCharArray();
+
+            foreach (char c in letterList)
+            {
+                _text.text += c;
+
+                yield return new WaitForSeconds(_timeBetweenLetters);
+            }
         }
     }
 }
+
