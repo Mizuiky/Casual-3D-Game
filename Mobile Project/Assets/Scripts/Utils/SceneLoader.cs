@@ -3,15 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneLoader : MonoBehaviour
+namespace Utils
 {
-    public void LoadSceneByName(string name)
+    public class SceneLoader : MonoBehaviour
     {
-        SceneManager.LoadScene(name);
-    }
+        public void LoadSceneByName(string name)
+        {
+            SceneManager.LoadScene(name);
+        }
 
-    public void LoadSceneByNumber(int sceneNumber)
-    {
-        SceneManager.LoadScene(sceneNumber);
+        public void LoadSceneByNumber(int sceneNumber)
+        {
+            SceneManager.LoadScene(sceneNumber);
+        }
     }
 }
+

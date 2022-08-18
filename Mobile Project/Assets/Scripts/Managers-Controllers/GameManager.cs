@@ -3,16 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using Core.Singleton;
 using System;
+using Screen;
 
 public class GameManager : Singleton<GameManager>
 {
     [Header("Player")]
     [SerializeField]
     private PlayerController _playerController;
-
-    [Header("UI")]
-    [SerializeField]
-    private UIController _uiController;
 
     [Header("Level")]
     [SerializeField]
@@ -50,7 +47,9 @@ public class GameManager : Singleton<GameManager>
     public void Init()
     {
         _levelManager.Init();
-        _uiController.SetScreenVisibility(UIController.ScreenType.START, true);
+
+        ScreenManager.Instance.HideAll();
+        ScreenManager.Instance.ShowByType(ScreenType.Start);
     }
 
     #region Game Flow
@@ -72,7 +71,7 @@ public class GameManager : Singleton<GameManager>
 
         OnRunningGame?.Invoke(_isRunning);
 
-        _uiController.SetScreenVisibility(UIController.ScreenType.END, true);   
+        ScreenManager.Instance.ShowByType(ScreenType.Looser);
     }
 
     public void CallVictory()
@@ -81,7 +80,7 @@ public class GameManager : Singleton<GameManager>
 
         _playerController.PlayerVictory();
 
-        _uiController.SetScreenVisibility(UIController.ScreenType.VICTORY, true);       
+        ScreenManager.Instance.ShowByType(ScreenType.Winner);
     }
 
     #endregion
