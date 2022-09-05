@@ -10,24 +10,38 @@ public class ParticleController : MonoBehaviour
     [SerializeField]
     private float _timeToDestroy;
 
-    public void PlayParticleByType(ParticleType type, Vector3 position)
+    public void PlayParticleByType(ParticleType type, Transform position)
     {
         var newParticle = _setup.Find(x => x.type == type).particle;
 
         if (newParticle != null)
-            Play(newParticle, position);       
+        {
+            ParticleSystem currentParticle = InstantiateParticle(type, newParticle, position);
+            Play(currentParticle);
+        } 
     }
 
-    private void Play(ParticleSystem newParticle, Vector3 position)
-    {
-        var particle = Instantiate(newParticle, transform);
-        particle.transform.position = position;
-       
+    private void Play(ParticleSystem particle)
+    {     
         SetParticleCollision(particle);
 
         particle.Play();
 
         Destroy(particle.gameObject, _timeToDestroy);
+    }
+
+    private ParticleSystem InstantiateParticle(ParticleType type, ParticleSystem newParticle, Transform location)
+    {
+        ParticleSystem particle = null;
+
+        if (type == ParticleType.MAIN)
+            particle = Instantiate(newParticle, location);
+        else
+            particle = Instantiate(newParticle, transform);
+
+        particle.transform.position = location.position;
+
+        return particle;
     }
 
     public void SetParticleCollision(ParticleSystem particle)

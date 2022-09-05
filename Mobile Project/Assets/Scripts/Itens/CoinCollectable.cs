@@ -26,7 +26,7 @@ public class CoinCollectable : ItemCollectableBase
     {
         base.OnCollect();
 
-        GameManager.Instance.PlayParticle(ParticleType.COLLECTABLE1, transform.position);
+        GameManager.Instance.PlayParticle(ParticleType.COLLECTABLE1, transform);
 
         if(_player != null)
             _player.Bounce();

@@ -15,6 +15,7 @@ public class UITouch : MonoBehaviour, IPointerDownHandler
     private ParticleController _controllerReference;
 
     public delegate ParticleController OnTouchButton();
+
     public static event OnTouchButton onTouchButton;
 
     public void OnPointerDown(PointerEventData eventData)
@@ -23,6 +24,6 @@ public class UITouch : MonoBehaviour, IPointerDownHandler
             _controllerReference = onTouchButton?.Invoke();
 
         if (_controllerReference != null)
-            _controllerReference.PlayParticleByType(_type, _instancePosition.position);
+            _controllerReference.PlayParticleByType(_type, _instancePosition);
     }
 }

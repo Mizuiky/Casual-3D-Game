@@ -87,7 +87,7 @@ public class GameManager : Singleton<GameManager>
 
     #region Particle System
 
-    public void PlayParticle(ParticleType type, Vector3 position)
+    public void PlayParticle(ParticleType type, Transform position)
     {
         _particleController.PlayParticleByType(type, position);
     }
