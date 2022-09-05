@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using DG.Tweening;
+using Utils;
 
 public class LevelManager : MonoBehaviour
 {
@@ -151,7 +152,7 @@ public class LevelManager : MonoBehaviour
         else
         {
             //get the random piece from _levelPieces list and instantiate it
-            randomPiece = _levelSetup._levelPieces[Random.Range(0, _levelSetup._levelPieces.Count)];
+            randomPiece = _levelSetup._levelPieces.GetRandom();
         }
 
         if (randomPiece != null)

@@ -21,7 +21,7 @@ public class BaseParticleTrigger : MonoBehaviour
         {
             foreach (TriggerSetup setup in _triggerSetup)
             {
-                GameManager.Instance.PlayParticle(setup.type, setup.particle.position);
+                GameManager.Instance.PlayParticle(setup.type, setup.particle);
             }           
         }
     }
